@@ -10,29 +10,17 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: monospace, sans-serif;
-
     background-size: 400% 400%;
-    background: linear-gradient(to bottom, #042326, #0A3A40, #0F5959, #1D7373, #107361);
-    background-repeat: no-repeat;
-    animation: gradientAnimation 2s infinite alternate;
-    color: #111;
-    line-height: 1.6;
+    background-image: linear-gradient(to bottom,#042326,
+    #0A3A40,#0F5959,#1D7373,#107361);
+    font-family: monospace, sans-serif;
+    color: #F2C335;
 }
-
-@keyframes gradientAnimation {
-        0% {
-            background-position: 0% 50%;
-        }
-        100% {
-            background-position: 100% 50%;
-        }
-    }
 
 .card_cadastro {
         display: flex;
         flex-direction: column;
-        background: #FFF;
+        background: #593E25;
         width: 80vw;
         max-width: 450px;
         padding: 30px;
@@ -46,7 +34,7 @@ body {
 .card_cadastro .bar {
         width: 50px;
         height: 2px;
-        background: #3bda56;
+        background: transparent;
 }
 
 .card_cadastro label {
@@ -56,7 +44,7 @@ body {
 .card_cadastro input {
         padding: 10px;
         border: none;
-        border: 1px solid #000;
+        border: 1px solid black;
         border-radius: 10px;        
 }
 
@@ -65,8 +53,8 @@ body {
         padding: 10px;
         border: none;
         border-radius: 10px;
-        background: #000000;
-        color: #FFF;
+        background: #F2C335;
+        color: #593E25;
         cursor: pointer;
         text-transform: uppercase;
 }
