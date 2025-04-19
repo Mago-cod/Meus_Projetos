@@ -10,10 +10,24 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: linear-gradient(to bottom, white, black);
     font-family: monospace, sans-serif;
+
+    background-size: 400% 400%;
+    background: linear-gradient(to bottom, #042326, #0A3A40, #0F5959, #1D7373, #107361);
+    background-repeat: no-repeat;
+    animation: gradientAnimation 2s infinite alternate;
     color: #111;
+    line-height: 1.6;
 }
+
+@keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
 
 .card_cadastro {
         display: flex;
