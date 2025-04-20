@@ -1,4 +1,8 @@
-const hamburger = document.querySelector("hamgurger");
-const nav = document.querySelector(".nav");
+const btn=
+document.getElementById("btn-menu");
+    const sidebar=
+    document.getElementById("sidebar");
 
-hamburger.addEventsListener("click", () => nav.classiList.toggle("active"));
+btn.addEventListener("click",() => {
+    sidebar.classList.toggle("aberto");
+})
