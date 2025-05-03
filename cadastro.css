@@ -10,12 +10,24 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-size: 400% 400%;
-    background-image: linear-gradient(to bottom,#042326,
-    #0A3A40,#0F5959,#1D7373,#107361);
     font-family: monospace, sans-serif;
-    color: #F2C335;
+
+    background-size: 400% 400%;
+    background: linear-gradient(to bottom, #042326, #0A3A40, #0F5959, #1D7373, #107361);
+    background-repeat: no-repeat;
+    animation: gradientAnimation 2s infinite alternate;
+    color: #FFF;
+    line-height: 1.6;
 }
+
+@keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
 
 .card_cadastro {
         display: flex;
@@ -44,7 +56,7 @@ body {
 .card_cadastro input {
         padding: 10px;
         border: none;
-        border: 1px solid black;
+        border: 1px solid #000;
         border-radius: 10px;        
 }
 
