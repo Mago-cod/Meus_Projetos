@@ -1,23 +1,21 @@
-const btnMenu=
-document.getElementById('btn-menu');
-    const navMenu=
-    document.querySelector('nav');
+function toggleMenu() {
+    const sidebar = 
+document.getElementById("sidebar");
+    sidebar.classList.toggle("hidden");
+}
 
-    //Alterna a visibilidade do menu ao clicar no botão
+function toggleMenu() {
+    const sidebar =
+document.getElementById("sidebar");
+    const overlay =
+document.getElementById("overlay");
 
-btnMenu.addEventListener("click",() => {
-    navMenu.classList.toggle('ativo');
-});
+    sidebar.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
+}
 
-    //Fecha o menu ao clicar na tela fora
+function closeMenu() {
+    document.getElementById("sidebar").classList.add("hidden");
 
-document.addEventListener('click',(Event) => 
-{
-    const clicaFora = !
-    navMenu.contains(Event.target) && !
-    btnMenu.contains(Event.target);
-        if(clicaFora) {
-            navMenu.classList.remove('ativo');
-        }
-});
-
+    document.getElementById("overlay").classList.add("hidden")
+}
