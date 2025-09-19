@@ -1,0 +1,17 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+body{
+    background-color: rgb(239, 87, 168);
+    color: rgb(58, 31, 212);
+}
