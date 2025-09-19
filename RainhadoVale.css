@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Roboto+Slab:wght@100..900&display=swap');
+
+
 * {
     padding: 0px;
     margin: 0px;
+}
+
+html{
+    font-family: inter, sans-serif;
+    font-weight: 500;
 }
 
 a {
@@ -14,4 +22,106 @@ ul {
 body{
     background-color: rgb(239, 87, 168);
     color: rgb(58, 31, 212);
+}
+
+nav{
+    max-width: 1120px;
+    margin: auto;
+    padding: 1.5rem 10rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    color: rgb(58, 31, 212);
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+}
+
+.principal{
+    background-color: rgb(245, 95, 95);;
+}
+
+.hero{
+    background: rgb(245, 95, 95);
+
+    max-width: 1220px;
+    height: 60vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6rem;
+
+    padding: 0rem 2rem;
+    margin: auto;
+    
+    overflow: clip;
+
+}
+
+.hero-conteudo{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.destaque{
+    font-family: "Roboto Slab", serif;
+    text-transform: uppercase;
+}
+
+.vermelho{
+    color: rgb(79, 25, 25);
+}
+
+h1{
+    color: rgb(79, 25, 25);
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+
+hr{
+    border-color: rgb(79, 25, 25);
+}
+
+.hero-subtitulo{
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal; 
+
+    color:rgb(79, 25, 25);
+}
+
+.hero-imagens-container{
+    max-width: 45%;
+    column-count: 4;
+    column-gap: 1rem;
+    margin: -1rem;
+}
+
+.hero-imagens-container > figure > img {
+    width: 100%;
+    border-radius: 0.5rem;
+
 }
