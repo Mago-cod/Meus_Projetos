@@ -1,95 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>identificador</title>
+    <title>IDENTIFICADOR DE ESTADOS</title>
+    <link rel="stylesheet" href="identificador.css">
 </head>
 <body>
-    <h1>IDENTICADOR DE ESTADOS</h1>
-    <p>Site criado com intuito de mostrar curiosidades sobre os estados do nosso país</p>
 
-    <input type="text" id="estados">
-    <input type="button" value="verificar" onclick="calcular">
+    <div class="container">
+        <h1>Bem-vindo ao Identificador de Estados do Brasil</h1>
 
-    <div id="res">
+            <label for="sigla">Digite a sigla de um Estado:</label>
+            <input type="text" id="sigla" placeholder="Ex: SP">
+            <button id="btn-verificar">Verificar Estado</button>
 
+        <div id="resultado"></div>
     </div>
-
-    <script>
-        function calcular(){
-    var estados = document.getElementById('estados').value.trim().toUpperCase();
-    var res = document.getElementById('res');
-
-    const estados = {
-        "AC": "Acre",
-        "AL": "Alagoas",
-        "AP": "Amapá",
-        "AM": "Amazonas",
-        "BA":"Bahia",
-        "CE": "Ceará",
-        "DF": "Distrito Federal",
-        "ES": "Espírito Santo",
-        "GO": "Goiás",
-        "MA": "Maranhão",
-        "MT": "Mato Grosso",
-        "MS":"Mato Grosso do Sul",
-        "MG":"Minas Gerais",
-        "PA":"Pará",
-        "PB":"Paraíba",
-        "PR":"Paraná",
-        "PE":"Pernambuco",
-        "PI":"Piauí",
-        "RJ":"Rio de Janeiro",
-        "RN":"Rio Grande do Norte",
-        "RS":"Rio Grande do Sul",
-        "RO":"Rondônia",
-        "RR":"Roraima",
-        "SC":"Santa Catarina",
-        "SP":"São Paulo",
-        "SE":"Sergipe",
-        "TO":"Tocantins",
-    };
-
-    const regioes = {
-        "Norte": ["AC","AP","AM","PA","RO","RR","TO"],
-        "Nordeste": ["AL","BA","CE","MA","PB","PE","PI","RN","SE"],
-        "Centro-Oeste": ["DF","GO","MT","MS"],
-        "Sudeste": ["ES","MG","RJ","SP"],
-        "Sul": ["PR","RS","SC"]
-    };
-
-    res.innerHTML = `<p>Entrada: <strong>${estados}</strong></p>`;
-
-    let siglaEncontrada = null;
-
-    if (estados[estados]) {
-        siglaEncontrada = estados;
-    }
-
-    if (!siglaEncontrada) {
-        for (let sigla in estados) {
-            if (estados[sigla].toUpperCase() === estados) {
-                siglaEncontrada = sigla;
-                break;
-            }
-        }
-    }
-
-    if (!siglaEncontrada) {
-        res.innerHTML += `<p style="color:red;">Estado inválido!</p>`;
-        return;
-    }
-//mostra o nome do estado//
-    res.innerHTML += `<p>Estado: <strong>${estados[siglaEncontrada]}</strong></p>`;
-
-    for (let regiao in regioes) {
-        if (regioes[regiao].includes(siglaEncontrada)) {
-            res.innerHTML += `<p>Região: <strong>${regiao}</strong></p>;`
-            break;
-        }
-    }
-}
-    </script>
 </body>
 </html>
