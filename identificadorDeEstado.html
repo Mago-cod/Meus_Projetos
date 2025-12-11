@@ -9,11 +9,13 @@
 <body>
 
     <div class="container">
-        <h1>Bem-vindo ao Identificador de Estados do Brasil</h1>
+        <header>
+            <h1>Bem-vindo ao Identificador de Estados do Brasil</h1>
+        </header>
 
             <label for="sigla">Digite a sigla de um Estado:</label>
-            <input type="text" id="sigla" placeholder="Ex: SP">
-            <button id="btn-verificar">Verificar Estado</button>
+            <input type="text" id="sigla" placeholder="Ex: SP" maxlength="2" aria-label="Digite a sigla do estado">
+            <button id="btn-verificar" aria-label="Verificar Estado">Verificar Estado</button>
 
         <div id="resultado"></div>
     </div>
