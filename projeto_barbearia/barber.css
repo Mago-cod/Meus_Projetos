@@ -1,0 +1,557 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+section {
+    padding: 3rem 2rem;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+}
+
+.logo p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #111;
+    color: #fff;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+header nav ul li a:hover,
+header nav ul li a:focus-visible {
+    color: #ffd36a;
+    outline: none;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    position: relative;
+}
+
+.hero-texto {
+    max-width: 500px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.hero-imagens {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.hero-imagens img {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e0dddd;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/*Efeito circular em triangulo*/
+
+.hero-imagens img:nth-child(1) {
+    top: 0;
+    left: 80px;
+}
+
+.hero-imagens img:nth-child(2) {
+    bottom: 0;
+    left: 0;
+}
+
+.hero-imagens img:nth-child(3) {
+    bottom: 40px;
+    right: 100px;
+}
+
+.hero-imagens img:nth-child(4) {
+    top: 120px;
+    right: 0;
+}
+
+/*Responsividade*/
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    
+    .hero-imagens {
+        margin-top: 40px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero-imagens img {
+        position: static;
+        width: 90px;
+        height: 90px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 20px;
+        text-align: center;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+.btn-agendar {
+    background-color: #fff;
+    color: #333;
+    padding: 0.8rem 2rem;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.btn-agendar:focus-visible,
+header nav ul li a:focus-visible {
+    outline: 3px solid #ffd36a;
+    outline-offset: 4px;
+}
+
+.servicos-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.servico-card {
+    background-color: #fff;
+    padding: 2rem;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.servico-card h3 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.servico-card p {
+    font-size: 0.95rem;
+}
+
+.servico-card, .profissional-card {
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.servico-card:hover, .profissional-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, .18);
+}
+
+.profissional-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.profissional-card {
+    background-color: #222;
+    color: #fff;
+    padding: 2rem;
+    width: 220px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.profissional-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.profissional-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+/* MODAL DE AGENDAMENTO (FORM) */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 1000;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.modal.ativo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    width: min(560px, 92vw);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border-radius: 20px;
+    padding: 2rem 2.2rem;
+    box-shadow: 0px 40px 120px rgba(0, 0, 0, .35);
+    animation: modalFadeUp 0.35s ease;
+}
+
+@keyframes modalFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 520px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .col-span-2 {
+        grid-column: auto;
+    }
+}
+
+/* BOTÃO FECHAR */
+
+.modal-fechar {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: #f2f2f2;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-fechar:hover {
+    background: #e6e6e6;
+    transform: scale(1.05);
+}
+
+/* TITULOS */
+
+.modal-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: #111;
+}
+
+.modal-subtitulo {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.8rem;
+}
+
+/* FORMULÁRIO */
+
+.form-agenda {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.form-agenda label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    gap: 0.4rem;
+}
+
+/*Inputs*/
+
+.form-agenda select,
+.form-agenda input {
+    padding: 0.85rem 0.9rem;
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    font-size: 0.95rem;
+    background: var(--input-bg);
+    color: var(--input-text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-agenda select:focus-visible,
+.form-agenda input:focus-visible {
+    outline: none;
+    border-color: #2a5298;
+    box-shadow: 0 0 0 4px var(--focus-ring);
+    background: #fff;
+}
+
+.col-span-2 {
+    grid-column: span 2;
+}
+
+/* Ações */
+
+.form-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 2.4rem;
+}
+
+/* Botão Principal*/
+
+.btn-confirmar {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--btn-primary-text);
+    background: var(--btn-primary-bg);
+    box-shadow: 0 12px 30px rgba(42, 82, 152, 0.35);
+}
+
+.btn-secundario {
+    display: none;
+}
+
+/* Botão Dark Mode */
+.theme-toggle {
+    display: flex;
+    justify-content: flex-end;
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: inherit;
+    padding: 0.5rem;
+    border-radius: 10px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+:root {
+    --bg-surface: #fff;
+    --text-primary: #111;
+    --text-secondary: #555;
+
+    --input-bg: #fafafa;
+    --input-border: #ddd;
+    --input-text: #111;
+    --input-placeholder: #888;
+
+    --btn-primary-bg: linear-gradient(135deg, #1e3c72, #2a5298);
+    --btn-primary-text: #fff;
+
+    --overlay-bg: rgba(0, 0, 0, .55);
+    --focus-ring: rgba(42, 82, 152, 0.25);
+}
+
+[data-theme="dark"] {
+    --bg-surface: #1b1d21;
+    --text-primary: #f1f1f1;
+    --text-secondary: #b5b5b5;
+
+    --input-bg: #252830;
+    --input-border: #3a3f4b;
+    --input-text: #f1f1f1;
+    --input-placeholder: #9aa0aa;
+
+    --btn-primary-bg: linear-gradient(135deg, #2a5298, #1e3c72);
+
+    --overlay-bg: rgba(0, 0, 0, .75);
+    --focus-ring: rgba(59, 130, 246, 0.35);
+}
+
+.footer {
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    border-top: 1px solid var(--input-border);
+    font-size: 0.9rem;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.footer-brand h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 280px;
+}
+
+/* Títulos */
+.footer h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+}
+
+/* Contatos */
+.footer-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-info li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+}
+
+/* Links */
+.footer a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-social .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--input-border);
+    text-align: center;
+    padding: 1rem 1rem 1.4rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        text-align: center;
+    }
+
+    .footer-brand p {
+        margin: 0 auto;
+    }
+
+    .footer-info li,
+    .footer-social a {
+        justify-content: center;
+    }
+}

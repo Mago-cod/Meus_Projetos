@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarberShop</title>
+    <link rel="stylesheet" href="barber.css">
+
+    <meta name="description"
+        content="Barbearia BarberShop em Recife: corte masculino, barba, pigmentação e atendimento profissional. Agende seu horário!">
+</head>
+
+<body>
+    <header>
+
+        <button id="themeToggle" class="theme-toggle" aria-label="Alterar tema">
+            🌙
+        </button>
+
+        <div class="logo">
+            <h1>BarberShop</h1>
+            <p>Sua melhor experiência no corte de cabelo e barba</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#profissionais">Profissionais</a></li>
+                <li><a href="#contato">Nossos contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+
+            <div class="hero-texto">
+                <h2>O corte perfeito começa aqui!</h2>
+                <p>Estilo, conforto e profissionais especializados para você</p>
+                <button class="btn-agendar" id="abrirAgendamento" type="button">
+                    Agendar horário
+                </button>
+            </div>
+
+
+            <div class="hero-imagens">
+                <img src="imagens_hero/corte_de_cabelo.jpg" alt="Corte de cabelo">
+                <img src="imagens_hero/corte_de_barba.jpg" alt="Barba sendo feita">
+                <img src="imagens_hero/itens_barber.jpg" alt="Ferramentas de barbearia">
+                <img src="imagens_hero/tatamento_feminino.jpg" alt="Tratamento feminino">
+            </div>
+        </section>
+
+        <section id="servicos" class="servicos">
+            <h2>Nossos serviços</h2>
+            <p>Aqui você encontrará uma ampla gama de serviços, para manter sua beleza em dia!</p>
+
+            <div class="servicos-container">
+
+                <div class="servico-card">
+                    <h3>Corte Masculino</h3>
+                    <p>Um corte de cabelo profissional para homens, com estilo e qualidade.</p>
+                </div>
+
+                <div class="servico-card">
+                    <h3>Barba</h3>
+                    <p>Tratamento profissional para manter sua barba em perfeito estado.</p>
+                </div>
+
+                <div class="servico-card">
+                    <h3>Barba & corte</h3>
+                    <p>Combinação de tratamento de barba e corte de cabelo para um visual impecável.</p>
+                </div>
+
+                <div class="servico-card">
+                    <h3>Pigmentação</h3>
+                    <p>Tratamento profissional para dar cor e estilo ao seu cabelo.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="profissionais" class="profissionais">
+            <h2>Nossos profissionais</h2>
+            <p>Conheça nossa equipe de profissionais qualificados e experientes.</p>
+
+            <div class="profissional-container">
+
+                <div class="profissional-card">
+                    <img src="profissionais/JoaoSilva_barber.jpg" alt="João Silva - Barbeiro">
+                    <h3>João Silva</h3>
+                    <p>Especialista em cortes e barbas</p>
+                </div>
+
+                <div class="profissional-card">
+                    <img src="profissionais/PedroOliveira_barber.jpg" alt="Pedro Oliveira - Barbeiro">
+                    <h3>Pedro Oliveira</h3>
+                    <p>Corte clássico e pigmentação</p>
+                </div>
+
+                <div class="profissional-card">
+                    <img src="profissionais/MariaSouza_barber.jpg" alt="Maria Souza - Cabeleleira">
+                    <h3>Maria Souza</h3>
+                    <p>Profissional especializada em todos os seviços de cabelo feminino</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="contato" class="contato">
+            <h2>Contato</h2>
+            <p>Agende seu horário ou fale conosco nos canais abaixo.</p>
+            <ul>
+                <li>
+                    Telefone: <a href="tel:(81) 98553-9607">(81) 98553-9607</a>
+                </li>
+                <li>
+                    Email: <a href="mailto:contato@barbershop.com">contato@barbershop.com</a>
+                </li>
+                <li>
+                    Nosso Instagram: <a href="https://instagram.com/barbershop" target="_blank"
+                        rel="noopener">@barbershop</a>
+                </li>
+                <li>
+                    Endereço: Rua dos Barbeiros, 123 - Recife, PE
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Modal de Agendamento -->
+
+    <div class="modal" id="modalAgendamento" aria-hidden="true">
+        <div class="modal-overlay" data-close="true"></div>
+
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="tituloAgendamento">
+            <button class="modal-fechar" type="button" aria-label="Fechar" data-close="true">x</button>
+
+            <h2 id="tituloAgendamento">Agendar horário</h2>
+            <p class="modal-subtitulo">Escolha o serviço, dia e profissional.</p>
+
+            <form id="formAgendamento" class="form-agenda">
+                <div class="form-grid">
+                    <label>
+                        Tipo de serviço
+                        <select name="servico" id="servico" required>
+                            <option value="">Selecione...</option>
+                            <option value="Corte Masculino">Corte Masculino</option>
+                            <option value="Barba">Barba</option>
+                            <option value="Barba & Corte">Barba & Corte</option>
+                            <option value="Pigmentação">Pigmentação</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Dia da semana
+                        <select name="dia" id="dia" required>
+                            <option value="">Selecione...</option>
+                            <option value="Segunda">Segunda</option>
+                            <option value="Terça">Terça</option>
+                            <option value="Quarta">Quarta</option>
+                            <option value="Quinta">Quinta</option>
+                            <option value="Sexta">Sexta</option>
+                            <option value="Sábado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
+                        </select>
+                    </label>
+
+
+                    <label>
+                        Profissional
+                        <select name="profissional" id="profissional" required>
+                            <option value="">Selecione...</option>
+                            <option value="João Silva">João Silva</option>
+                            <option value="Pedro Oliveira">Pedro Oliveira</option>
+                            <option value="Maria Souza">Maria Souza</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Horário do atendimento
+                        <select name="horario" id="horario">
+                            <option value="">Selecione...</option>
+                            <option>09:00</option>
+                            <option>10:00</option>
+                            <option>11:00</option>
+                            <option>14:00</option>
+                            <option>15:00</option>
+                            <option>16:00</option>
+                            <option>17:00</option>
+                        </select>
+                    </label>
+
+                    <label class="col-span-2">
+                        Nome (opcional)
+                        <input type="text" name="nome" id="nome" placeholder="Seu nome">
+                    </label>
+
+                    <label class="col-span-2">
+                        WhatsApp (opcional)
+                        <input type="tel" name="whatsapp" id="whatsapp" placeholder="(81) 9xxxx-xxxx">
+                    </label>
+                </div>
+
+
+                <button type="submit" class="btn-confirmar">Confirmar agendamento</button>
+                <button type="button" class="btn-secundario" data-close="true">Cancelar</button>
+        </div>
+
+        <p class="form-msg" id="msgAgendamento" aria-live="polite"></p>
+        </form>
+    </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>BarberShop</h3>
+                <p>Estilo, cuidado e profissionalismo em cada detalhe.</p>
+            </div>
+
+            <div class="footer-info">
+                <h4>Contato</h4>
+                <ul>
+                    <li>📍 Rua dos Barbeiros, 123 - Recife, PE</li>
+                    <li>📞 <a href="tel:5581985539607">(81) 98553-9607</a></li>
+                    <li>✉️ <a href="mailto:contato@barbershop.com">contato@barbershop.com</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Siga-nos</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/barbershop" target="_blank" aria-label="Instagram">Instagram</a>
+                    <a href="https://wa.me/5581985539607" target="_blank" aria-label="WhatsApp">WhatsApp</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 BarberShop. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="barber.js"></script>
+</body>
+
+</html>
