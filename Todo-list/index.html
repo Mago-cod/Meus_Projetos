@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon_io/favicon.ico" type="image/x-icon">
+    <title>My Todo-list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button id="menu-toggle" title="abrir menu">☰</button>
+        <span class="spacer"></span> 
+        <button id="theme-toggle">🌙</button> 
+    </header>
+
+    <nav class="side-menu" id="sideMenu">
+        <button id="close-menu">✖</button>
+        <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Minhas Listas</a></li>
+            <li><a href="#">Configurações</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>My To-do List</h1>
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Adicione uma nova tarefa">
+            <button id="addBtn">Adicionar tarefa</button>
+        </div>
+
+        <ul id="taskList"></ul>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
