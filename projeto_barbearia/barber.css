@@ -4,15 +4,20 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--bg-page);
+    color: var(--text-page);
     line-height: 1.6;
 }
 
 section {
     padding: 3rem 2rem;
+    background-color: var(--bg-surface);
 }
 
 .logo {
@@ -187,7 +192,7 @@ header nav ul li a:focus-visible {
 }
 
 .servico-card {
-    background-color: #fff;
+    background-color: var(--bg-surface);
     padding: 2rem;
     width: 250px;
     border-radius: 10px;
@@ -322,7 +327,7 @@ header nav ul li a:focus-visible {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.3rem;
-    color: #111;
+    color: var(--text-primary);
 }
 
 .modal-subtitulo {
@@ -349,7 +354,7 @@ header nav ul li a:focus-visible {
     flex-direction: column;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary);
     gap: 0.4rem;
 }
 
@@ -427,6 +432,9 @@ header nav ul li a:focus-visible {
 }
 
 :root {
+    --bg-page: #f9f9f9;
+    --text-page:#333333;
+
     --bg-surface: #fff;
     --text-primary: #111;
     --text-secondary: #555;
@@ -444,6 +452,9 @@ header nav ul li a:focus-visible {
 }
 
 [data-theme="dark"] {
+    --bg-page:#121212;
+    --text-page: #f1f1f1;
+
     --bg-surface: #1b1d21;
     --text-primary: #f1f1f1;
     --text-secondary: #b5b5b5;
@@ -457,6 +468,83 @@ header nav ul li a:focus-visible {
 
     --overlay-bg: rgba(0, 0, 0, .75);
     --focus-ring: rgba(59, 130, 246, 0.35);
+}
+
+/*Informações de contato*/
+
+.contato {
+    padding: 4rem 1.5rem;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+}
+
+.contato-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contato-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    border-radius: 16px;
+}
+
+.contato-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.contato-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.contato-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.6rem;
+}
+
+/*Card dos contatos*/
+.contato-card {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 16px;
+    padding: 1.6rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contato-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.contato-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.contato-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.contato-card a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 300;
+}
+
+.contato-card a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .contato-endereco {
+        grid-column: auto;
+    }
 }
 
 .footer {
