@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+    background: #f4f4f4;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px 12px;
+    border: 1px dashed #aaa;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.file-label input {
+    display: block;
+    margin-top: 8px;
+}
+
+.meta {
+    margin-top: 12px;
+    padding: 10px;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: pre-line;
+    color: #444;
+}
+
+.status {
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.status-ok {
+    background: #e8fff0;
+    border: 1px solid #7bd99b;
+    color: #145a2a;
+}
+
+.status-error {
+    background: #ffecec;
+    border: 1px solid #ff9f9f;
+    color: #7a1010;
+}
+
+#output {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+
+    white-space: pre-wrap; /*Navegador respeita a quebra de linha GRANDE ou PEQUENA*/
+    overflow: auto;
+    max-height: 420px;
+
+    font-family: Consolas, Monaco, monospace;
+    font-size: 13px;
+
+    overflow-wrap: anywhere; /* Permite quebra de linha em qualquer lugar */
+    word-break: break-word; /* Garante quebra de linha de palavras longas */
+}
+
+.theme-toggle {
+    margin: 12px 0;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+body.dark {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark .card {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark .file-label {
+    border-color: #555;
+}
+
+body.dark .meta {
+    background: #1a1a1a;
+    border-color: #333;
+    color: #ccc;
+}
+
+body.dark .status-ok {
+    background: #1f3d2b;
+    border-color: #2e7d55;
+    color: #9fe6c3;
+}
+
+body.dark .status-error {
+    background: #3a1f1f;
+    border-color: #7d2e2e;
+    color: #f5b5b5;
+}
+
+body.dark #output {
+
+    background: #111;
+    border-color: #333;
+    color: #ddd;
+}
+
+body.dark .theme-toggle {
+    background: #222;
+    color: #eee;
+    border-color: #444;
+}
