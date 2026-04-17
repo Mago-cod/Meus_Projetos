@@ -3,7 +3,11 @@ const output = document.getElementById('output'); // Vai mostrar o conteúdo do 
 const meta = document.getElementById('meta'); // Mostra as informações do arquivo (nome, tamanho, tipo) - Referência ao <pre id="meta">
 const statusBox = document.getElementById('status'); // Retorna o status da validação
 
-fileInput.addEventListener('change', handleFileSelect); // Registra o evento de selecionar/trocar de arquivo. A função handleFileSelect chama todas as outras para processar o arquivo
+fileInput.addEventListener('change', handleFileSelect); // Registra o evento de selecionar/trocar de arquivo
+
+
+// ------------------------------ MANIPULAÇÃO DO ARQUIVO ------------------------------ //
+
 
 async function handleFileSelect() {
     clearUI(); // Limpa a interface para novos arquivos
@@ -144,7 +148,7 @@ async function handleFileSelect() {
                 
     }
 
-    // ------------------------------ VALIDAÇÃO DE CAMPOS OBSIRATÓRIOS (XML) ------------------------------ //
+    // ------------------------------ VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS (XML) ------------------------------ //
         
     const requiredFields = [
         'dataEmissao',
