@@ -12,28 +12,28 @@ fileInput.addEventListener('change', handleFileSelect); // Registra o evento de 
 async function handleFileSelect() {
     clearUI(); // Limpa a interface para novos arquivos
 
-    const file = fileInput.files?.[0]; // [0] Porque pega o primeiro e único arquivo selecionado. O "?" evita erros caso o usuário cancele a seleção ou não escolha nenhum arquivo.
-    if (!file) return; // Assegura se o usuário abrir o seletor e cancelar, a função pare
+    const file = fileInput.files?.[0]; // [0] Porque pega o primeiro e único arquivo selecionado. "?" evita erros caso o usuário cancele a seleção ou não escolha nenhum arquivo.
+    if (!file) return; // Assegura que a função pare se o usuário abrir o seletor e cancelar
 
     renderMeta(file);
     const content = await file.text();
     const fileType = detectedType(file.name, content);
 
-    // Validador do XML //
+    // ----------- Validador do XML ------------ //
 
     if (fileType === 'XML') {
         const result = validateXmlWellFormed(content);
 
         if (!result.ok) {
-            setStatusError(`XML malformado \nMotivo : ${result.errorMessage}`);
+            setStatusError(`XML malformado\nMotivo : ${result.errorMessage}`);
             output.textContent = content; // Exibe o conteúdo mesmo que o XML esteja malformado
             return;             
         } 
 
-        const semanticErrors = validateRequiredFields(content);
+        const semanticErrors = validateSemanticRules(content);
 
         if (semanticErrors.length > 0) {
-            setStatusError('Erros de validação:\n' + semanticErrors.join('\n'));
+            setStatusError(semanticErrors.join('\n'));
         } else {
             setStatusOk('XML válido (campos obrigatórios presentes e preenchidos)');
         }
@@ -75,91 +75,74 @@ async function handleFileSelect() {
 
     function detectedType(fileName, content) {
         const lower = fileName.toLowerCase();
+
         if (lower.endsWith('.xml')) return 'XML';
         if (lower.endsWith('.txt')) return 'TXT';
 
         const trimmed = content.trimStart();
         if (trimmed.startsWith('<?xml') || trimmed.startsWith('<')) return 'XML';
 
-        return 'TXT';
+        return 'UNKNOWN';
     }
 
     function validateXmlWellFormed(xmlText) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(xmlText, 'application/xml');
-
         const parserError = doc.querySelector('parsererror');
 
         if (!parserError) {
             return { ok: true };
         }
 
-        const errorMessage = parserError.textContent
-        .replace(/\s+/g, ' ')
-        .trim();
-
-        return { ok: false, errorMessage };
+        return {
+            ok: false,
+            errorMessage: parserError.textContent.replace(/\s+/g, ' ').trim()
+        };
     }
 
-    function setStatusOk(message) {
-        statusBox.classList.add('status-ok');
-        statusBox.textContent = message;
+    function setStatusOk(msg) {
+        statusBox.textContent = msg;
+        statusBox.className = 'status status-ok';
     }
 
-    function setStatusError(message) {
-        statusBox.classList.add('status-error');
-        statusBox.textContent = message;
+    function setStatusError(msg) {
+        statusBox.textContent = msg;
+        statusBox.className = 'status status-error';
     }
 
-    // ------------------------------ IDENTAÇÃO DO XML ------------------------------ //
-
-    function formatXml(xml) {
-        try {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xml, 'application/xml');
-
-            const serializer = new XMLSerializer();
-            let formatted = serializer.serializeToString(xmlDoc);
-
-            formatted = formatted
-                .replace(/(>)(<)(\/*)/g, '$1\n$2$3')
-                .replace(/\n\s*\n/g, '\n');
-
-            let pad = 0;
-            return formatted.split('\n').map(line => {
-                let indent = 0;
-
-                if (line.match(/.+<\/\w[^>]*>$/)) {
-                    indent = 0;
-                } else if (line.match(/^<\/\w/)) {
-                    pad--;
-                } else if (line.match(/^<\w([^>]*[^/])?>.*$/)) {
-                    indent = 1;
-                }
-
-                const padding = '  '.repeat(pad);
-                pad += indent;
-
-                return padding + line;
-            }).join('\n');
-        } catch {
-            return xml; // Se o XML for malformado, retorna o texto original sem formatação
-        }
-                
-    }
 
     // ------------------------------ VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS (XML) ------------------------------ //
         
-    const requiredFields = [
-        'dataEmissao',
-        'numero',
-        'valor',
-        'cnpjEmitente',
-        'cnpjDestinatario',
-        'descricaoProduto',
-        'quantidade',
-        'valorUnitario'
-    ];
+    const fieldRules = {
+        dhEmi: { required: true, type: 'date' },
+        nNF: { required: true, type: 'number' },
+        serie: { required: true, type: 'number' },
+        tpNF: { required: true, type: 'number' },
+
+        CNPJ: { required: true, pattern: /^\d{14}$/ },
+
+        xNome: { required: true },
+
+        vNF: { required: true, type: 'decimal' }
+    };
+
+    // ------------------------------ VALIDADORES DE TIPO ------------------------------ //
+
+    function isValidDate(v) {
+        return /^\d{2}\/\d{2}\/\d{4}$/.test(v);
+    }
+
+    function isNumber(v) {
+        return !isNaN(v);
+    }
+
+    function isDecimal(v) {
+        return /^\d+(\.\d+)?$/.test(v);
+    }
+
+    function isCnpj(v) {
+        return /^\d{14}$/.test(v);
+    }
 
     function validateRequiredFields(xmlText) {
         const parser = new DOMParser();
@@ -182,6 +165,35 @@ async function handleFileSelect() {
         });
 
         return errors;
+    }
+
+    // ------------------------------ REGRAS SEMÂNTICAS (XML) ------------------------------ //
+
+    function validateSemanticRules(xmlText) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+        const namespace = xmlDoc.documentElement.namespaceURI;
+
+        const errors = [];
+
+        for (const [tag, rules] of Object.entries(fieldRules)) {
+            const element = xmlDoc.getElementsByTagNameNS(namespace, tag)[0];
+
+            if (rules.required && !element) {
+                errors.push(`Rejeição: campo <${tag}> obrigatório não informado`);
+                continue;
+            }
+
+            if (!element) continue; // Se o campo não é obrigatório e não existe, pula para o próximo
+
+            const value = element.textContent.trim();
+            if (!value) {
+                errors.push(`Rejeição: campo <${tag}> está vazio!`);
+                continue;
+            }
+        }
+
+            return errors;
     }
 
     // ------------------------------ MODO CLARO / MODO ESCURO ------------------------------ //
