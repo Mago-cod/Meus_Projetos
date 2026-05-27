@@ -26,6 +26,11 @@ body {
     margin-top: 8px;
 }
 
+.file-label:hover {
+    border-color: #0078d4;
+    background: #f0f8ff;
+}
+
 .meta {
     margin-top: 12px;
     padding: 10px;
@@ -65,6 +70,7 @@ body {
     white-space: pre-wrap; /*Navegador respeita a quebra de linha GRANDE ou PEQUENA*/
     overflow: auto;
     max-height: 420px;
+    line-height: 1.4;
 
     font-family: Consolas, Monaco, monospace;
     font-size: 13px;
@@ -83,6 +89,10 @@ body {
     font-weight: bold;
 }
 
+.theme-toggle:hover {
+    transition: all 0.2s ease;
+}
+
 body.dark {
     background-color: #121212;
     color: #e0e0e0;
@@ -95,6 +105,10 @@ body.dark .card {
 
 body.dark .file-label {
     border-color: #555;
+}
+
+body.dark .file-label:hover {
+    background: #2a2a2a;
 }
 
 body.dark .meta {

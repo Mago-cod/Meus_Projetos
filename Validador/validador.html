@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validador XML / TXT</title>
+    <title>Validador TXT</title>
     <link rel="stylesheet" href="validador.css">
 </head>
 <body class="dark">
@@ -12,27 +12,32 @@
         🌙 Modo Escuro
     </button>
 
-    <h1>Validador de XML e TXT</h1>
+    <h1>Validador de TXT</h1>
 
     <section>
         <label class="file-label">
-            <span>Selecione um arquivo (.xml ou .txt)</span>
-            <input type="file" id="fileInput" accept=".xml,.txt">
+            <span>Selecione um arquivo (.txt)</span>
+            <input type="file" id="fileInput" accept=".txt">
         </label>
 
         <div id="meta" class="meta"></div> <!-- Exibe informações sobre o arquivo -->
-
         <div id="status" class="status"></div>
     </section>
 
     <section class="card">
-        <h2>Contéudo</h2>
+        <h2>Conteúdo</h2>
         <pre id="output"></pre> <!-- Área que exibe o resultado -->
     </section>
 
-    <script src="validador.js"></script>
+    <section class="card">
+        <h2>Erros</h2>
+        <pre id="errors"></pre>
+    </section>
+
+    <script type="module" src="./JS/main.js"></script>
 
     <footer>
-        &copy; 2026 Validador XML/TXT - Desenvolvido por <a href="https://github.com/Mago-cod">Guilherme Silva</a>
+        &copy; 2026 Validador TXT - Desenvolvido por <a href="https://github.com/Mago-cod">Guilherme Silva</a>
+    </footer>
 </body>
 </html>
