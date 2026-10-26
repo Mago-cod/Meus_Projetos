@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conversor de moedas com cotações atualizadas diariamente.">
+  <title>Conversor de Moedas</title>
+  <link rel="stylesheet" href="conversor.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="converter-card" aria-labelledby="titulo">
+      <header class="card-header">
+        <div class="brand-icon" aria-hidden="true">↗</div>
+        <div>
+          <p class="eyebrow">Câmbio atualizado</p>
+          <h1 id="titulo">Conversor de moedas</h1>
+          <p class="subtitle">Consulte valores com taxas de referência atualizadas diariamente.</p>
+        </div>
+      </header>
+
+      <form id="formConversor" novalidate>
+        <label for="valor">Valor</label>
+        <div class="amount-field">
+          <span id="simboloMoeda" aria-hidden="true">US$</span>
+          <input type="number" id="valor" name="valor" min="0.01" step="0.01" inputmode="decimal" placeholder="0,00" required>
+        </div>
+
+        <div class="currency-grid">
+          <div class="field-group">
+            <label for="moedaOrigem">De</label>
+            <select id="moedaOrigem" name="moedaOrigem">
+              <option value="BRL">BRL — Real brasileiro</option>
+              <option value="USD" selected>USD — Dólar americano</option>
+              <option value="EUR">EUR — Euro</option>
+              <option value="GBP">GBP — Libra esterlina</option>
+              <option value="JPY">JPY — Iene japonês</option>
+              <option value="CAD">CAD — Dólar canadense</option>
+              <option value="CHF">CHF — Franco suíço</option>
+            </select>
+          </div>
+
+          <button id="btnTrocar" class="swap-button" type="button" aria-label="Trocar moedas" title="Trocar moedas">⇄</button>
+
+          <div class="field-group">
+            <label for="moedaDestino">Para</label>
+            <select id="moedaDestino" name="moedaDestino">
+              <option value="BRL" selected>BRL — Real brasileiro</option>
+              <option value="USD">USD — Dólar americano</option>
+              <option value="EUR">EUR — Euro</option>
+              <option value="GBP">GBP — Libra esterlina</option>
+              <option value="JPY">JPY — Iene japonês</option>
+              <option value="CAD">CAD — Dólar canadense</option>
+              <option value="CHF">CHF — Franco suíço</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="btnConverter" class="primary-button" type="submit">
+          <span class="button-text">Converter agora</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <section id="resultado" class="result-card" aria-live="polite" hidden></section>
+      <p id="mensagemErro" class="error-message" role="alert" hidden></p>
+
+      <footer>
+        <span class="status-dot" aria-hidden="true"></span>
+        Taxas de referência fornecidas pela Frankfurter API
+      </footer>
+    </section>
+  </main>
+  <script src="conversor.js"></script>
+</body>
+</html>
